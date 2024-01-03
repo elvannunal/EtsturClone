@@ -258,9 +258,11 @@ export class FilterComponent implements OnInit {
         
       });
     } else {
-      
+    
       this.filteredHotels = this.originalHotels;
+
     }
+    
   }
   
 	

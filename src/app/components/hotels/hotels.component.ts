@@ -261,15 +261,15 @@ export class HotelsComponent implements OnInit {
   }
 
   searchByMinMaxPrice() {
-
+debugger
     const minPriceInput = document.getElementById('minPrice') as HTMLInputElement;
     const maxPriceInput = document.getElementById('maxPrice') as HTMLInputElement;
   
     const minPrice = parseFloat(minPriceInput.value);
     const maxPrice = parseFloat(maxPriceInput.value);
-  
+    debugger
     if (!isNaN(minPrice) && !isNaN(maxPrice)) {
-
+      debugger
       this.filteredHotels = this.originalHotels.filter((hotel) => {
         
         const totalAmount = this.calculateTotalAmount(hotel);
