@@ -456,20 +456,25 @@ section {
 
 .mobilFilter {
     display: visible;
-}.filter-item-wrapper {
+}
+
+.filter-item-wrapper {
     margin: auto;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
 }
-.priceInput{
+
+.priceInput {
     display: flex;
     flex-direction: row;
     margin-left: -10px;
     margin-top: 10px;
     margin-bottom: 10px;
 }
-.priceMin,.priceMax{
+
+.priceMin,
+.priceMax {
     width: 100%;
     border: 1px solid #dbe0e6;
     background-color: #f6f9fd;
@@ -478,6 +483,7 @@ section {
     max-height: 32px;
     margin-left: 10px;
 }
+
 .btn-primary {
     background-image: linear-gradient(to left, #08aeea, #17cec4);
     color: #fff;
@@ -500,6 +506,7 @@ section {
     margin-right: 7px;
     margin-left: 7px;
 }
+
 /* HOTELS SECTİON END*/
 
 /*PC RESPONSİVE START*/
@@ -1324,7 +1331,8 @@ section {
         bottom: 0px;
         left: -1px !important;
     }
-    .wrapperSearchSetion{
+
+    .wrapperSearchSetion {
         padding: 5px 10px;
     }
 
@@ -1491,8 +1499,8 @@ section {
 
         left: 15pc;
         top: 14px;
-    }  
-     
+    }
+
 
 }
 

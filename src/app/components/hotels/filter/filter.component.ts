@@ -239,4 +239,29 @@ export class FilterComponent implements OnInit {
       default:
     }
   }
+
+  searchByMinMaxPrice() {
+
+    const minPriceInput = document.getElementById('minPrice') as HTMLInputElement;
+    const maxPriceInput = document.getElementById('maxPrice') as HTMLInputElement;
+  
+    const minPrice = parseFloat(minPriceInput.value);
+    const maxPrice = parseFloat(maxPriceInput.value);
+  
+    if (!isNaN(minPrice) && !isNaN(maxPrice)) {
+
+      this.filteredHotels = this.originalHotels.filter((hotel) => {
+        
+        const totalAmount = this.calculateTotalAmount(hotel);
+  
+        return totalAmount >= minPrice && totalAmount <= maxPrice;
+        
+      });
+    } else {
+      
+      this.filteredHotels = this.originalHotels;
+    }
+  }
+  
+	
 }

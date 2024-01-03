@@ -1,5 +1,6 @@
 <section>
 
+    <!--Search Section Kısmı Başlangıç-->
     <div class="serachDatas">
         <div class="wrapperSearchSetion m-3">
             <div class="wrapperBtn">
@@ -28,6 +29,11 @@
     <!-- <div class="col-12">
         <app-search-section [searchData]="searchData"></app-search-section>
     </div> -->
+
+
+    <!--Search Section Kısmı Bitiş-->
+
+    <!--Filtreleme Kısmı Başlangıç-->
 
     <div class="container">
 
@@ -101,8 +107,8 @@
                             <div *ngIf="!filter.displayCount">
                                 <div class="filter-item-wrapper filter-item-body active">
                                     <div class="priceInput">
-                                        <input clsearchByMinMaxPriceass="priceMin" type="text" class="priceMin" id="minPrice"
-                                            name="minPrice" placeholder="Min">
+                                        <input clsearchByMinMaxPriceass="priceMin" type="text" class="priceMin"
+                                            id="minPrice" name="minPrice" placeholder="Min">
                                         <input class="priceMax" type="text" id="maxPrice" name="maxPrice"
                                             placeholder="Max">
                                         <button id="searchByMinMaxPriceBtn" type="button" class="btn btn-primary"
@@ -114,8 +120,9 @@
                     </div>
                 </div>
             </div>
+            <!--Filtreleme Kısmı Bitiş-->
 
-            <!--otellerin olduğu kısım-->
+            <!--Otel Listesi Başlangıç -->
 
             <div class="col-12 col-lg-9 mobilHotels">
 
@@ -278,6 +285,8 @@
                     </div>
                 </div>
             </div>
+
+            <!--Otel Listesi Bitiş -->
         </div>
     </div>
 </section>
