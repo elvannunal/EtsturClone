@@ -185,14 +185,14 @@
             width: 89%;
         }
         #searchTextId {
-            width:100%;
+            width:96%;
 
         }
         .searchSectionWrapper {
             padding: 0
         }
         .textCustomer{
-            width:89%;
+            width: 88%;
         }
         .mobileWrapperSearch {
             margin-left: 9px;
@@ -200,12 +200,17 @@
         }
 
         .hotelSearchButton {
-            width:100%;
+            width: 97%;
+
+        }
+        .datePicker {
+            width: 97%;
+            margin-left: 5px;
         }
     }
     @media (max-width:390px){
         #searchTextId {
-            width:100%;
+            width:96%;
 
         }
         .datePicker {
@@ -219,16 +224,29 @@
 
     }
     @media (max-width:375px){
+        #searchTextId {
+            width:98%;
+
+        }
+        .datePicker {
+            width: 98%;
+            margin-left: 4px;
+  
+        }
+        .textCustomer{
+            width: 91%;
+
+        }
         .searchSectionWrapper{
             margin-top:0;
             padding: 0;
 
         }
         .hotelSearchButton {
-            width:100%;
+            width:99%;
         }
         .textCustomer{
-            width: 92%;
+            width: 91%;
             margin-left: 7px;
         }
         .mobileWrapperSearch {
@@ -238,7 +256,7 @@
             background: transparent;
         }
         .datePicker {
-            width: 100%;
+            width: 98%;
             margin-left: 7px;
   
         }

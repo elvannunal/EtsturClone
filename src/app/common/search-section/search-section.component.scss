@@ -227,14 +227,16 @@
     padding: 0px 8px;
     border-radius: 6px;
 }
-
 .input-group {
     position: relative;
     display: flex;
     flex-wrap: wrap;
     align-items: stretch;
     width: 119%;
+  
 }
+
+
 
 .inputCalendar {
     border-radius: 0px !important;
@@ -592,7 +594,7 @@
         left: 7pc;
     }
     #searchTextId{
-        width: 100%;
+        width: 101%;
         margin-top: 12px;
         line-height: 19px;
     }
@@ -606,7 +608,17 @@
         padding: 6px 8px;
         margin-left: -7px;
         font-size: 16px;
+        color:#333;
+        font-weight: 300;
     }
+     .col-5{
+        .input-group{
+            .inputCalendarLeft{
+                border-right: 1px black solid !important;
+            }
+            
+        }
+     }
     .rightCalendar{
         border-left: 1px #06000080 solid !important;
     }
