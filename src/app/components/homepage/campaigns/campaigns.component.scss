@@ -777,6 +777,16 @@
 
 @media (max-width:500px) {
 
+    [type=radio]{
+        display: inline-block;
+        visibility: visible;
+        position: relative;
+        left: 8pc;
+        top: 18pc;
+        width: 21px;
+    }
+  
+
     #imgSection {
         width: 90px !important;
         height: 90px !important;
@@ -915,9 +925,6 @@
 
     }
 
-    [type=radio] {
-        display: none;
-    }
 
     .imgCamp {
         position: absolute;
@@ -927,7 +934,8 @@
         top: 0;
         right: 0;
         bottom: 0;
-        border-radius: 8;
+        border-radius: 8px;
+
     }
 
     #slider {
@@ -938,7 +946,7 @@
         margin-top: 20px;
         margin-bottom: 10px;
         padding: 20px;
-        border-radius: 8;
+        border-radius: 8px;
     }
 
     #slider label {
@@ -950,7 +958,7 @@
         right: 0;
         cursor: pointer;
         transition: transform 0.4s ease;
-        border-radius: 8;
+        border-radius: 8px;
     }
 
     #s1:checked~#slide4,
