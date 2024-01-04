@@ -23,11 +23,15 @@
 
 ::ng-deep.carousel-control-next-icon {
     background: url(../../../../assets/common/iconsforward.png);
+    background-repeat: no-repeat;
+    background-position: center;
 
 }
 
 ::ng-deep.carousel-control-prev-icon {
     background: url(../../../../assets/common/iconsback.png);
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 ::ng-deep .carousel-control-prev,
