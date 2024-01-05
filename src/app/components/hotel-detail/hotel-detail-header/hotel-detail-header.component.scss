@@ -23,10 +23,12 @@
     padding: 30px 0;
     border-bottom: 1px solid #ededed;
 }
-.iframe{
+
+.iframe {
     width: 44em;
     height: 450px;
 }
+
 .hotelCaption {
     margin-bottom: 10px;
 }
@@ -216,6 +218,7 @@
     font-size: 12px;
     margin-top: 12px;
 }
+
 /* .amenitiesIconSection{
     position: absolute;
     bottom: -36em !important;
@@ -243,7 +246,7 @@
 
 .mobilAmenities {
     display: flex;
-   
+
 }
 
 .discountModalSection {
@@ -350,13 +353,15 @@
     position: relative;
     margin-right: 0;
 }
-.amenitiesIconSection{
+
+.amenitiesIconSection {
     display: flex;
     align-items: center;
-    margin-bottom:0px;
+    margin-bottom: 0px;
     width: 100%;
     justify-content: center;
 }
+
 .moreAmenities {
     display: block;
     color: #056bfd;
@@ -642,7 +647,7 @@
 /* MOBİL RESPONSİVE START */
 
 @media screen and (max-width: 428px) {
- 
+
     .mobilAmenities {
         display: block;
 
@@ -657,7 +662,7 @@
 
     .mobilAmenities {
         display: block;
-  
+
     }
 
     .breadcrumb {
@@ -748,7 +753,8 @@
         display: none !important;
         visibility: hidden !important
     }
-    .amenitiesIconSection{
+
+    .amenitiesIconSection {
         display: flex;
         align-items: center;
         margin-bottom: 0px;
@@ -760,11 +766,11 @@
 }
 
 @media screen and (max-width: 428px) {
-  
+
 
     .mobilAmenities {
         display: block;
- 
+
     }
 
     .etsInfoIconWrapper {
@@ -777,15 +783,15 @@
         top: 1pc;
     }
 
- 
+
 }
 
 @media screen and (max-width: 428px)and (max-height: 926px) {
-  
+
 
     .mobilAmenities {
         display: block;
-       
+
     }
 
     .etsInfoIconWrapper {
@@ -797,17 +803,18 @@
         left: 33px !important;
         top: 1pc;
     }
-   
+
 
 }
 
 @media screen and (max-width: 414px) {
-  
+
     .mobilAmenities {
         display: block;
-      
+
     }
-    .modalSectionForDiscount{
+
+    .modalSectionForDiscount {
         font-size: 12px;
         margin-left: 55px;
         padding: 5px 0px 0px 0px;
@@ -822,11 +829,10 @@
         left: 28px !important;
         top: 1pc;
     }
- 
+
 }
-@media screen and (max-width: 412px) and (max-height:915px) {
-   
-}
+
+@media screen and (max-width: 412px) and (max-height:915px) {}
 
 @media screen and (max-width: 390px) {
     .container {
@@ -844,7 +850,7 @@
     .hotelName {
         font-size: 20px;
     }
-  
+
     .etsLikeSection,
     .awardIcon,
     .likeIcon,
@@ -911,7 +917,7 @@
         display: none;
     }
 
-   
+
 
     .opportunitySection {
         margin-top: -52px;
@@ -927,21 +933,25 @@
     }
 
 }
+
 @media screen and (max-width: 390px) {
     // .amenitiesIconSection{
     //     bottom: -7pc !important;
     // } 
 }
+
 @media screen and (max-width: 390px) and (max-height:844px) {
     // .amenitiesIconSection{
     //     bottom: -7pc !important;
     // }
 }
+
 @media screen and (max-width: 375px) {
- 
+
     .mobilAmenities {
         display: block;
     }
+
     // .amenitiesIconSection{
     // bottom: -5pc !important;
     // margin-bottom: -18px;
@@ -951,7 +961,7 @@
 
 
 @media screen and (max-width: 375px) and (max-height:812px) {
- 
+
     .mobilAmenities {
         display: block;
     }
@@ -963,6 +973,7 @@
         width: 120px;
         margin-right: 2px;
     }
+
     // .amenitiesIconSection{
     //     bottom:-11pc !important;
     // }
@@ -983,10 +994,12 @@
         left: -21px !important;
         top: 1pc;
     }
+
     // .amenitiesIconSection{
     //     bottom:-8pc !important;
     // }
 }
+
 // @media screen and (max-width: 360px) and (max-height:880px) {
 //     .amenitiesIconSection{
 //         bottom:0pc !important;
@@ -1012,7 +1025,7 @@
 
 
 @media screen and (max-width: 320px) {
- 
+
 
     .mobilAmenities {
         display: block;
@@ -1066,14 +1079,69 @@
         padding: 5px 5px 4px 5px;
         margin: -2px -3px 6px 39px;
     }
+
     // .amenitiesIconSection{
     //     bottom:-20pc !important;
     // }
-    .amenitiesName{
+    .amenitiesName {
         padding: 4px;
         font-size: 10px;
         width: 74px;
     }
 }
 
+
+
 /* MOBİL RESPONSİVE END */
+
+
+@media screen and (max-height: 926px) {
+    .amenitiesIconSection {
+        bottom: -1pc;
+    }
+}
+@media screen and (max-height: 915px) {
+    .amenitiesIconSection {
+        bottom: 0pc;
+    }
+}
+
+@media screen and (max-height: 880px) {
+    .amenitiesIconSection {
+        bottom: -1pc;
+    }
+}
+@media screen and (max-height: 844px) {
+    .amenitiesIconSection {
+        bottom: -7pc;
+    }
+}
+@media screen and (max-height: 915px) {
+    .amenitiesIconSection {
+        bottom: 0pc;
+    }
+}
+
+@media screen and (max-height: 800px) {
+    .amenitiesIconSection {
+        bottom: -5pc;
+    }
+}
+
+@media screen and (max-height: 804px) {
+    .amenitiesIconSection {
+        bottom: -5pc;
+    }
+}
+
+@media screen and (max-height: 780px) {
+    .amenitiesIconSection {
+        bottom: -5pc;
+    }
+}
+
+@media screen and (max-height: 600px) {
+    .amenitiesIconSection {
+        bottom: -20pc;
+    }
+}
