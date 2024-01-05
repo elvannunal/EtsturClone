@@ -1113,12 +1113,6 @@
         bottom: -5pc;
     }
 }
-@media screen and (max-height: 800px) {
-    .amenitiesIconSection {
-        bottom: -6pc;
-    }
-}
-
 
 // @media screen and (max-height: 804px) {
 //     .amenitiesIconSection {
@@ -1138,8 +1132,13 @@
 //     }
 // }
 
-@media screen and (max-height: 700px) {
+@media screen and (max-height: 750px) {
     .amenitiesIconSection {
         bottom: -8pc;
+    }
+}
+@media screen and (max-height: 700px) {
+    .amenitiesIconSection {
+        bottom: -10pc;
     }
 }
