@@ -1095,30 +1095,16 @@
 /* MOBİL RESPONSİVE END */
 
 
-@media screen and (max-height: 926px) {
-    .amenitiesIconSection {
-        bottom: -1pc;
-    }
-}
+
 @media screen and (max-height: 915px) {
     .amenitiesIconSection {
-        bottom: 0pc;
+        bottom: 1pc;
     }
 }
 
-@media screen and (max-height: 880px) {
-    .amenitiesIconSection {
-        bottom: -1pc;
-    }
-}
 @media screen and (max-height: 844px) {
     .amenitiesIconSection {
-        bottom: -7pc;
-    }
-}
-@media screen and (max-height: 915px) {
-    .amenitiesIconSection {
-        bottom: 0pc;
+        bottom: -3pc;
     }
 }
 
