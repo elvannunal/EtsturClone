@@ -1113,21 +1113,33 @@
         bottom: -5pc;
     }
 }
-
-@media screen and (max-height: 804px) {
+@media screen and (max-height: 800px) {
     .amenitiesIconSection {
-        bottom: -5pc;
+        bottom: -6pc;
     }
 }
 
-@media screen and (max-height: 780px) {
-    .amenitiesIconSection {
-        bottom: -5pc;
-    }
-}
 
-@media screen and (max-height: 600px) {
+// @media screen and (max-height: 804px) {
+//     .amenitiesIconSection {
+//         bottom: -5pc;
+//     }
+// }
+
+// @media screen and (max-height: 780px) {
+//     .amenitiesIconSection {
+//         bottom: -5pc;
+//     }
+// }
+
+// @media screen and (max-height: 600px) {
+//     .amenitiesIconSection {
+//         bottom: -20pc;
+//     }
+// }
+
+@media screen and (max-height: 700px) {
     .amenitiesIconSection {
-        bottom: -20pc;
+        bottom: -8pc;
     }
 }
