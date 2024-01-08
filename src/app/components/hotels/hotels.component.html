@@ -170,7 +170,7 @@
 
                 <div class="hotelsWrapper">
                     <div class="hotelsSection">
-                        <div class="row hotel" *ngFor="let hotel of filteredHotels">
+                        <div class="row hotel" *ngFor="let hotel of (this.isActive ? filteredHotelsInPriceRange : filteredHotels)">
                             <div class="col-4 hotelImg">
                                 <div class="earlyReservation " *ngIf="hotel?.earlyReservation">
                                     <img src="../../../assets/common/discount.png">
@@ -257,7 +257,7 @@
                                                     <div class="prices-container">
 
                                                         <p class="amount">{{ hotel.discount ?
-                                                            (calculeDiscountPrices(hotel)
+                                                            (calculateDiscountPrices(hotel)
                                                             |
                                                             number: '1.0-0') : (calculateTotalAmount(hotel) | number:
                                                             '1.0-0') }} TL

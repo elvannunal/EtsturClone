@@ -7,6 +7,7 @@ import { FilterService } from 'src/app/services/filter.service';
 import { ActivatedRoute } from '@angular/router';
 import { FilterComponent } from './filter/filter.component';
 import { NgbCalendar, NgbDate, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-hotels',
@@ -14,13 +15,16 @@ import { NgbCalendar, NgbDate, NgbDateParserFormatter } from '@ng-bootstrap/ng-b
   styleUrls: ['./hotels.component.scss']
 })
 export class HotelsComponent implements OnInit {
+
   fromDate: NgbDate | null;
-	toDate: NgbDate | null;
+  toDate: NgbDate | null;
   searchData: any;
   hotels: any[] = [];
   filteredHotels: any[] = [];
+  filteredHotelsInPriceRange: any[] = []
+
   filters: any[] = [];
-  isVisible:any
+  isVisible: any
   showFilters: boolean = false;
   selectedFilters: any = {
     rate: [],
@@ -29,7 +33,7 @@ export class HotelsComponent implements OnInit {
     location: []
   };
   searchText: string = '';
- 
+
   counter: number = 0;
   counterChild: number = 0;
   searchSectionComponent: any;
@@ -37,7 +41,12 @@ export class HotelsComponent implements OnInit {
   totalDiscountAmount: any;
 
   originalHotels: any[] = [];
-  showSearchSection:boolean=false;
+  copyFilterHotels: any[] = [];
+  calculatedHotelAmounts: any[] = [];
+
+  showSearchSection: boolean = false;
+  isActive: boolean = false;
+
   route: any;
   constructor(
     private hotelsService: HotelsService,
@@ -45,9 +54,12 @@ export class HotelsComponent implements OnInit {
     private modalService: NgbModal,
     private dataService: DataService,
     private routeActive: ActivatedRoute,
-    private calendar: NgbCalendar
-  ) {	this.fromDate = calendar.getToday();
-		this.toDate = calendar.getNext(calendar.getToday(), 'd', 10); }
+    private calendar: NgbCalendar,
+    private cdr: ChangeDetectorRef
+  ) {
+    this.fromDate = calendar.getToday();
+    this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
+  }
 
   ngOnInit(): void {
     this.getHotel();
@@ -60,7 +72,7 @@ export class HotelsComponent implements OnInit {
       this.nightCount = params?.nightCount || 0;
       this.counter = params?.counter || 0;
       this.counterChild = params?.counterChild || 0;
-    
+
       this.searchData = {
         searchText: this.searchText,
         fromDate: this.fromDate,
@@ -69,11 +81,11 @@ export class HotelsComponent implements OnInit {
         counter: this.counter,
         counterChild: this.counterChild
       };
-    
+
       console.log("searchText", this.searchText);
       console.log("searchData", this.searchData);
     });
-    
+
     this.route.queryParams.subscribe((params: { searchData: any; }) => {
       console.log(params.searchData);
     });
@@ -86,7 +98,6 @@ export class HotelsComponent implements OnInit {
     const modalRef = this.modalService.open(FilterComponent);
     //modaldan gönderilen veriyi burada karışladım
     modalRef.componentInstance.onFilterApplied.subscribe((filteredData: any) => {
-      console.log("BURASIIIIIIIIIIIIIIIIIII", filteredData);
       this.filteredHotels = filteredData;
     });
   }
@@ -95,14 +106,15 @@ export class HotelsComponent implements OnInit {
       this.hotels = res;
       this.filteredHotels = this.hotels;
       this.originalHotels = this.hotels;
+
     });
   }
 
   getFilter() {
     this.filterService.getFilters().subscribe((res: any) => {
       this.filters = res.map((item: any) => {
-        
-        if (item.options && item.options.every((option: any) => typeof option === 'string')){
+
+        if (item.options && item.options.every((option: any) => typeof option === 'string')) {
           const mappedOptions = item.options.map((option: string) => {
             return {
               name: option,
@@ -115,7 +127,7 @@ export class HotelsComponent implements OnInit {
           };
         } else {
 
-          const mappedOptions = item.options.map((option: { name: string, filterArea: string}) => {
+          const mappedOptions = item.options.map((option: { name: string, filterArea: string }) => {
             return {
               name: option.name,
               filterArea: option.filterArea,
@@ -136,8 +148,8 @@ export class HotelsComponent implements OnInit {
   }
 
   onCheckboxChange(event: any, option: any, areadef: any) {
-    
-    const filterArray = this.selectedFilters[areadef ?? option.filterArea ];
+
+    const filterArray = this.selectedFilters[areadef ?? option.filterArea];
 
     this.updateFilterArray(option.name, event.target.checked, filterArray);
 
@@ -197,12 +209,12 @@ export class HotelsComponent implements OnInit {
 
   calculateTotalAmount(hotel: any): number {
 
-    const totalAmount = hotel.amount * this.nightCount * this.counter ;
+    const totalAmount = hotel.amount * this.nightCount * this.counter;
 
     return totalAmount;
   }
 
-  calculeDiscountPrices(hotel: any): number {
+  calculateDiscountPrices(hotel: any): number {
     const discountAmount = (hotel.amount * hotel.discount) / 100;
     const discountedPrice = hotel.amount - discountAmount;
     const totalDiscountAmount = discountedPrice * this.nightCount;
@@ -217,22 +229,22 @@ export class HotelsComponent implements OnInit {
     switch (event.value) {
       case 'priceAsc':
         this.filteredHotels.sort((a, b) => {
-          const amountA = a.discount ? this.calculeDiscountPrices(a) : this.calculateTotalAmount(a);
-          const amountB = b.discount ? this.calculeDiscountPrices(b) : this.calculateTotalAmount(b);
+          const amountA = a.discount ? this.calculateDiscountPrices(a) : this.calculateTotalAmount(a);
+          const amountB = b.discount ? this.calculateDiscountPrices(b) : this.calculateTotalAmount(b);
           return amountA - amountB;
         });
         break;
       case 'priceDesc':
         this.filteredHotels.sort((a, b) => {
-          const amountA = a.discount ? this.calculeDiscountPrices(a) : this.calculateTotalAmount(a);
-          const amountB = b.discount ? this.calculeDiscountPrices(b) : this.calculateTotalAmount(b);
+          const amountA = a.discount ? this.calculateDiscountPrices(a) : this.calculateTotalAmount(a);
+          const amountB = b.discount ? this.calculateDiscountPrices(b) : this.calculateTotalAmount(b);
           return amountB - amountA;
         });
         break;
       case 'defaulSorting':
 
         //buraya tekrar bakıcam, ets tur sıralaması olarak geçiyor ama bunu onlar neye göre yaptı bilmiyorum. 
-       
+
 
         this.filteredHotels = this.originalHotels;
         break;
@@ -248,40 +260,43 @@ export class HotelsComponent implements OnInit {
   showMobilFilters() {
     this.showFilters = !this.showFilters
   }
-  openSort(){
-    this.isVisible=!this.isVisible;
+  openSort() {
+    this.isVisible = !this.isVisible;
   }
-	ngbDateToDate(ngbDate: NgbDate | null): Date | null {
-		return ngbDate ? new Date(ngbDate.year, ngbDate.month - 1, ngbDate.day) : null;
-	} 
+  ngbDateToDate(ngbDate: NgbDate | null): Date | null {
+    return ngbDate ? new Date(ngbDate.year, ngbDate.month - 1, ngbDate.day) : null;
+  }
 
   toggleSearchSection() {
 
     this.showSearchSection = !this.showSearchSection;
   }
 
+
   searchByMinMaxPrice() {
-debugger
+    this.isActive = true;
     const minPriceInput = document.getElementById('minPrice') as HTMLInputElement;
     const maxPriceInput = document.getElementById('maxPrice') as HTMLInputElement;
   
-    const minPrice = parseFloat(minPriceInput.value);
-    const maxPrice = parseFloat(maxPriceInput.value);
-    debugger
-    if (!isNaN(minPrice) && !isNaN(maxPrice)) {
-      debugger
-      this.filteredHotels = this.originalHotels.filter((hotel) => {
-        
-        const totalAmount = this.calculateTotalAmount(hotel);
+    const parsedMinPrice = parseFloat(minPriceInput.value) || 0;
+    const parsedMaxPrice = parseFloat(maxPriceInput.value) || 0;
   
-        return totalAmount >= minPrice && totalAmount <= maxPrice;
-        
-      });
-    } else {
-      
-      this.filteredHotels = this.originalHotels;
-    }
+    var filteredHotelsInPriceRange = this.filteredHotels.filter(hotelAmount => {
+      const discountedAmount = this.calculateDiscountPrices(hotelAmount);
+      return discountedAmount >= parsedMinPrice && discountedAmount <= parsedMaxPrice;
+    });
+  
+    this.filteredHotelsInPriceRange = filteredHotelsInPriceRange;
+    console.log(this.filteredHotelsInPriceRange)
+  
+    this.cdr.detectChanges();
   }
+
   
-	
+
+
+
 }
+
+
+
