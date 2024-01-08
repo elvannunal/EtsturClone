@@ -761,7 +761,7 @@
         width: 100%;
         justify-content: center;
         position: absolute;
-        bottom: -10pc;
+     
     }
 }
 
@@ -1092,27 +1092,17 @@
 
 
 
+@media screen and (max-height: 750px) {
+    .amenitiesIconSection {
+        bottom: -18pc;
+    }
+}
+
 /* MOBİL RESPONSİVE END */
 
 
 
-@media screen and (max-height: 915px) {
-    .amenitiesIconSection {
-        bottom: 1pc;
-    }
-}
 
-@media screen and (max-height: 844px) {
-    .amenitiesIconSection {
-        bottom: -3pc;
-    }
-}
-
-@media screen and (max-height: 800px) {
-    .amenitiesIconSection {
-        bottom: -5pc;
-    }
-}
 
 // @media screen and (max-height: 804px) {
 //     .amenitiesIconSection {
@@ -1131,10 +1121,4 @@
 //         bottom: -20pc;
 //     }
 // }
-
-@media screen and (max-height: 750px) {
-    .amenitiesIconSection {
-        bottom: -18pc;
-    }
-}
 
