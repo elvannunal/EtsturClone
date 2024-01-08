@@ -5,6 +5,7 @@ import { FilterService } from 'src/app/services/filter.service';
 import { HotelsService } from 'src/app/services/hotels.service';
 import { DataService } from 'src/app/services/search.service';
 import { ModalComponent } from '../modal/modal.component';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-filter',
@@ -42,6 +43,7 @@ export class FilterComponent implements OnInit {
     private hotelsService: HotelsService,
     private filterService: FilterService,
     private modalService: NgbModal,
+    private cdr: ChangeDetectorRef,
     private dataService: DataService,
     private routeActive: ActivatedRoute, public activeModal: NgbActiveModal
   ) { }
@@ -205,7 +207,7 @@ export class FilterComponent implements OnInit {
   }
 
 
-  calculeDiscountPrices(hotel: any): number {
+  calculateDiscountPrices(hotel: any): number {
     const discountAmount = (hotel.amount * hotel.discount) / 100;
     const discountedPrice = hotel.amount - discountAmount;
     const totalDiscountAmount = discountedPrice * this.nightCount;
@@ -218,15 +220,15 @@ export class FilterComponent implements OnInit {
     switch (event.value) {
       case 'priceAsc':
         this.filteredHotels.sort((a, b) => {
-          const amountA = a.discount ? this.calculeDiscountPrices(a) : this.calculateTotalAmount(a);
-          const amountB = b.discount ? this.calculeDiscountPrices(b) : this.calculateTotalAmount(b);
+          const amountA = a.discount ? this.calculateDiscountPrices(a) : this.calculateTotalAmount(a);
+          const amountB = b.discount ? this.calculateDiscountPrices(b) : this.calculateTotalAmount(b);
           return amountA - amountB;
         });
         break;
       case 'priceDesc':
         this.filteredHotels.sort((a, b) => {
-          const amountA = a.discount ? this.calculeDiscountPrices(a) : this.calculateTotalAmount(a);
-          const amountB = b.discount ? this.calculeDiscountPrices(b) : this.calculateTotalAmount(b);
+          const amountA = a.discount ? this.calculateDiscountPrices(a) : this.calculateTotalAmount(a);
+          const amountB = b.discount ? this.calculateDiscountPrices(b) : this.calculateTotalAmount(b);
           return amountB - amountA;
         });
         break;
@@ -241,29 +243,22 @@ export class FilterComponent implements OnInit {
   }
 
   searchByMinMaxPrice() {
-
     const minPriceInput = document.getElementById('minPrice') as HTMLInputElement;
     const maxPriceInput = document.getElementById('maxPrice') as HTMLInputElement;
-  
-    const minPrice = parseFloat(minPriceInput.value);
-    const maxPrice = parseFloat(maxPriceInput.value);
-  
-    if (!isNaN(minPrice) && !isNaN(maxPrice)) {
 
-      this.filteredHotels = this.originalHotels.filter((hotel) => {
-        
-        const totalAmount = this.calculateTotalAmount(hotel);
-  
-        return totalAmount >= minPrice && totalAmount <= maxPrice;
-        
-      });
-    } else {
-    
-      this.filteredHotels = this.originalHotels;
+    const parsedMinPrice = parseFloat(minPriceInput.value) || 0;
+    const parsedMaxPrice = parseFloat(maxPriceInput.value) || Number.MAX_VALUE;
 
-    }
-    
-  }
-  
+    const filteredHotels = this.originalHotels.filter(hotel => {
+        const discountedAmount = this.calculateDiscountPrices(hotel);
+        return discountedAmount >= parsedMinPrice && discountedAmount <= parsedMaxPrice;
+    });
+
+    this.filteredHotels = filteredHotels;
+    console.log("new filteredHotels", this.filteredHotels);
+
+    this.cdr.detectChanges();
+}
+
 	
 }
