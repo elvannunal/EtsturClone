@@ -1092,16 +1092,6 @@
 
 
 
-@media screen and (max-height: 750px) {
-    .amenitiesIconSection {
-        bottom: -10pc;
-    }
-}
-@media screen and (max-height: 450px) {
-    .amenitiesIconSection {
-        bottom: -18pc;
-    }
-}
 /* MOBİL RESPONSİVE END */
 
 
@@ -1126,3 +1116,14 @@
 //     }
 // }
 
+
+@media screen and (max-height: 450px) {
+    .amenitiesIconSection {
+        bottom: -18pc;
+    }
+}
+@media screen and (max-height: 750px) {
+    .amenitiesIconSection {
+        bottom: -10pc;
+    }
+}
