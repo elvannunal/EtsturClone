@@ -274,20 +274,20 @@ export class HotelsComponent implements OnInit {
 
 
   searchByMinMaxPrice() {
-    this.isActive = true;
+
     const minPriceInput = document.getElementById('minPrice') as HTMLInputElement;
     const maxPriceInput = document.getElementById('maxPrice') as HTMLInputElement;
   
     const parsedMinPrice = parseFloat(minPriceInput.value) || 0;
     const parsedMaxPrice = parseFloat(maxPriceInput.value) || 0;
   
-    var filteredHotelsInPriceRange = this.filteredHotels.filter(hotelAmount => {
+    var filteredHotels = this.filteredHotels.filter(hotelAmount => {
       const discountedAmount = this.calculateDiscountPrices(hotelAmount);
       return discountedAmount >= parsedMinPrice && discountedAmount <= parsedMaxPrice;
     });
   
-    this.filteredHotelsInPriceRange = filteredHotelsInPriceRange;
-    console.log(this.filteredHotelsInPriceRange)
+    this.filteredHotels = filteredHotels;
+    console.log("new filteredHotels",this.filteredHotels)
   
     this.cdr.detectChanges();
   }
