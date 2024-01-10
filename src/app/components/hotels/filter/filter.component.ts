@@ -141,6 +141,10 @@ export class FilterComponent implements OnInit {
         this.selectedFilters.location.every((filter: any) => this.filterByLocation(hotel, filter));
     });
     
+    debugger
+    if(this.maxPrice > 0 || this.minPrice > 0){
+      this.searchByMinMaxPrice();
+    }
     this.onFilterApplied.emit(this.filteredHotels)
 
     this.activeModal.close();
