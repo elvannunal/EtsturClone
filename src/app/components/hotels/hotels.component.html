@@ -104,7 +104,7 @@
                                 </div>
                             </div>
 
-                            <div *ngIf="!filter.displayCount">
+                            <!-- <div *ngIf="!filter.displayCount">
                                 <div class="filter-item-wrapper filter-item-body active">
                                     <div class="priceInput">
                                         <input clsearchByMinMaxPriceass="priceMin" type="text" class="priceMin"
@@ -115,7 +115,23 @@
                                             (click)="searchByMinMaxPrice()">Ara</button>
                                     </div>
                                 </div>
+                            </div> -->
+
+                            <div *ngIf="!filter.displayCount">
+                                <div class="filter-item-wrapper filter-item-body active">
+                                    <div class="priceInput">
+                                        <form #priceForm="ngForm">
+                                            <input [(ngModel)]="minPrice" name="minPrice" type="text" class="priceMin"
+                                                id="minPrice" placeholder="Min">
+                                            <input [(ngModel)]="maxPrice" name="maxPrice" type="text" class="priceMax"
+                                                id="maxPrice" placeholder="Max">
+                                            <button id="searchByMinMaxPriceBtn" type="button" class="btn btn-primary"
+                                                (click)="searchByMinMaxPrice()">Ara</button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
+                            
                         </div>
                     </div>
                 </div>

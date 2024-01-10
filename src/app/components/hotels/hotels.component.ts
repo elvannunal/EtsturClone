@@ -46,7 +46,8 @@ export class HotelsComponent implements OnInit {
 
   showSearchSection: boolean = false;
   isActive: boolean = false;
-
+  minPrice: number = 0;
+  maxPrice: number = 0;
   route: any;
   constructor(
     private hotelsService: HotelsService,
@@ -275,11 +276,8 @@ export class HotelsComponent implements OnInit {
 
   searchByMinMaxPrice() {
 
-    const minPriceInput = document.getElementById('minPrice') as HTMLInputElement;
-    const maxPriceInput = document.getElementById('maxPrice') as HTMLInputElement;
-  
-    const parsedMinPrice = parseFloat(minPriceInput.value) || 0;
-    const parsedMaxPrice = parseFloat(maxPriceInput.value) || 0;
+    const parsedMinPrice = this.minPrice || 0;
+    const parsedMaxPrice = this.maxPrice || 0;
   
     var filteredHotels = this.filteredHotels.filter(hotelAmount => {
       const discountedAmount = this.calculateDiscountPrices(hotelAmount);

@@ -38,6 +38,9 @@ export class FilterComponent implements OnInit {
 
   originalHotels: any[] = [];
   route: any;
+ 
+  minPrice: number = 0;
+  maxPrice: number = 0;
 
   constructor(
     private hotelsService: HotelsService,
@@ -45,7 +48,8 @@ export class FilterComponent implements OnInit {
     private modalService: NgbModal,
     private cdr: ChangeDetectorRef,
     private dataService: DataService,
-    private routeActive: ActivatedRoute, public activeModal: NgbActiveModal
+    private routeActive: ActivatedRoute, 
+    public activeModal: NgbActiveModal
   ) { }
 
   ngOnInit(): void {
@@ -136,8 +140,12 @@ export class FilterComponent implements OnInit {
         this.selectedFilters.amenities.every((filter: any) => this.filterByAmenities(hotel, filter)) &&
         this.selectedFilters.location.every((filter: any) => this.filterByLocation(hotel, filter));
     });
+    
     this.onFilterApplied.emit(this.filteredHotels)
+
     this.activeModal.close();
+
+
   }
 
   updateFilterArray(value: any, isChecked: boolean, filterArray: any) {
@@ -242,23 +250,31 @@ export class FilterComponent implements OnInit {
     }
   }
 
+
   searchByMinMaxPrice() {
-    const minPriceInput = document.getElementById('minPrice') as HTMLInputElement;
-    const maxPriceInput = document.getElementById('maxPrice') as HTMLInputElement;
+  
+    const parsedMinPrice = this.minPrice || 0;
+    const parsedMaxPrice = this.maxPrice || 0;
 
-    const parsedMinPrice = parseFloat(minPriceInput.value) || 0;
-    const parsedMaxPrice = parseFloat(maxPriceInput.value) || Number.MAX_VALUE;
-
-    const filteredHotels = this.originalHotels.filter(hotel => {
-        const discountedAmount = this.calculateDiscountPrices(hotel);
-        return discountedAmount >= parsedMinPrice && discountedAmount <= parsedMaxPrice;
+     debugger
+    var filteredHotels = this.filteredHotels.filter(hotelAmount => {
+      const discountedAmount = this.calculateDiscountPrices(hotelAmount);
+      return discountedAmount >= parsedMinPrice && discountedAmount <= parsedMaxPrice;
     });
-
+  
+   
     this.filteredHotels = filteredHotels;
-    console.log("new filteredHotels", this.filteredHotels);
+    this.onFilterApplied.emit(this.filteredHotels)
 
+    console.log("new filteredHotels",this.filteredHotels)
+  
     this.cdr.detectChanges();
-}
+
+    this.activeModal.close();
+
+
+  }
+
 
 	
 }
