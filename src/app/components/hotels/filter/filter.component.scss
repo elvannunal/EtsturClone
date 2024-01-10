@@ -330,6 +330,11 @@
         left: -1pc !important;
         margin-top: -3% !important;
     }
+
+    .priceMin,
+    .priceMax {
+        width: 170px;
+    }
 }
 @media screen and (max-width: 500px) {
     ::ng-deep.modal-content {
@@ -345,6 +350,11 @@
         bottom: 0px;
         left: 13px;
     }
+    .priceMin,
+    .priceMax {
+        width: 155px;
+    }
+    
 }
 
 @media screen and (max-width: 415px) {
@@ -361,8 +371,7 @@
         bottom: 0px;
         left: 13px;
     }
-
-    
+  
 }
 
 @media screen and (max-width: 380px) {
@@ -379,6 +388,10 @@
         bottom: 0px;
         left: 13px;
     }
+    .priceMin,
+    .priceMax {
+        width: 140px;
+    }
 }
 
 @media screen and (max-width: 330px) {
@@ -394,5 +407,9 @@
 
         bottom: 0px;
         left: 10px;
+    }
+    .priceMin,
+    .priceMax {
+        width: 113px;
     }
 }
